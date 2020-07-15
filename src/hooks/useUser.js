@@ -1,6 +1,7 @@
 import { useContext, useCallback, useState } from "react";
 import Context from "../context/UserContext";
 import loginService from '../services/login';
+import RegisterService from '../services/register';
 
 export default function useUser(){
     const {jwt, setJWT, user, setUser} = useContext(Context);
@@ -33,6 +34,17 @@ export default function useUser(){
             })
     },[setJWT, setUser])
 
+    const register = useCallback(({user})=>{
+        RegisterService({user})
+        .then(res => {
+            console.log('/*******************/',res)
+            return res
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+    },[])
+
     const logout = useCallback(()=>{
         localStorage.removeItem('jwt')
         localStorage.removeItem('user')
@@ -46,6 +58,7 @@ export default function useUser(){
         hasLoginError: state.error,
         login, 
         logout,
+        register,
         user
     }
 }

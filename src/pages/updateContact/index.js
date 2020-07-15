@@ -1,9 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useContacts from 'hooks/useContacts';
 import { Link } from 'wouter';
+import useUser from 'hooks/useUser';
 
 const UpdateContact = ({params}) => {
     const {getOneContact, singleContact, updateContact } = useContacts()
+    const [alert, setAlert] = useState(false)
+    const {user} = useUser()
+
+    if(alert){
+        setTimeout(() => {
+            setAlert(false)
+        }, 2000);
+    }
 
     useEffect(function(){
         getOneContact({id: params.id})
@@ -16,12 +25,12 @@ const UpdateContact = ({params}) => {
             lastName: e.target['lastName'].value,
             email: e.target['email'].value,
             contactNumber: e.target['contactNumber'].value,
-            user_id: 1
+            user_id: user.id
         }
 
-        // console.log(contact)
         updateContact({id: params.id, contact})
         e.target.reset()
+        setAlert(true)
     }
 
     return (
@@ -35,6 +44,13 @@ const UpdateContact = ({params}) => {
                         <Link to="/" className="btn btn-outline-secondary">Go Back</Link>
                     </div>
                     <form className="card-body  text-dark" onSubmit={handleSubmit}>
+                        {alert ?
+                            <div className="alert alert-success d-flex justify-content-between align-items-center" 
+                            role="alert">
+                                <span>Contact updated</span> 
+                                <button className="btn btn-sm" onClick={()=> setAlert(false)} >X</button>
+                            </div> : ''
+                        }
                         <div className="form-group">
                             <label htmlFor="firstName" className="float-left">First Name: </label>
                             <input 

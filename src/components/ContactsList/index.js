@@ -1,7 +1,7 @@
 import React from 'react';
 import Contact from 'components/Contacts';
 
-const ContactList = ({contacts, deleteContact}) => {
+const ContactList = ({contacts, setHasDeletedContact}) => {
     // const [pageWidth, setPageWidth] = useState(0)
 
     return (
@@ -26,6 +26,7 @@ const ContactList = ({contacts, deleteContact}) => {
                             lastName={singleContact.lastName}
                             email={singleContact.email}
                             contactNumber={singleContact.contactNumber}
+                            setHasDeletedContact={setHasDeletedContact}
                             key={index}
                         />
                     )

@@ -2,9 +2,15 @@ import React from 'react';
 import { Link } from 'wouter';
 import useContacts from 'hooks/useContacts';
 
-const Contact = ({id, firstName, lastName, email, contactNumber}) => {
+const Contact = ({id, firstName, lastName, email, contactNumber, setHasDeletedContact}) => {
 
     const {deleteContact} = useContacts()
+
+    function handleDelete(e){
+        e.preventDefault()
+        deleteContact({contactId: id})
+        setHasDeletedContact(true)
+    }
 
     return (
         <tr>
@@ -17,8 +23,8 @@ const Contact = ({id, firstName, lastName, email, contactNumber}) => {
                     Update
                 </Link>
                 <button 
-                    className="btn btn-sm btn-danger ml-2" 
-                    onClick={()=> deleteContact({contactId: id})} >
+                    onClick={handleDelete} 
+                    className="btn btn-sm btn-danger ml-2" >
                     Delete
                 </button>
             </td>

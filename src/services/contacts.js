@@ -1,4 +1,4 @@
-const ENDPOINT = 'http://localhost:4000/api/v1'
+import {ENDPOINT} from './login'
 const jwt = JSON.parse(localStorage.getItem('jwt'))
 const token = jwt ? jwt.token : null
 

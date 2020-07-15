@@ -10,9 +10,12 @@ export default function Header() {
 
     return (
         <header className="navbar navbar-expand-lg navbar-darkd-flex justify-content-between">
-            <h3><Link to="/" className="text-light" style={{textDecoration: "none"}} > 
-                {isLogged ? `${user?.username} Profile` : 'Contact App'} 
-            </Link></h3>
+            <div>
+                <h3 className="navbar-brand">Contacts App</h3>
+                <Link to="/profile" className="navbar-link text-light" style={{textDecoration: "none"}} > 
+                    {isLogged ? `${user?.username} profile` : ''} 
+                </Link>
+            </div>
             {
                 isLogged
                 ? <Link className="text-light" to="/" onClick={logout}>Logout</Link>

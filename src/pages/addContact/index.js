@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'wouter';
+
 import useContacts from 'hooks/useContacts';
+import useUser from 'hooks/useUser';
 
 const AddContact = () => {
 
     const {addContact} = useContacts()
+    const [alert, setAlert] = useState(false)
+    const {user} = useUser()
 
+    if(alert){
+        setTimeout(() => {
+            setAlert(false)
+        }, 2000);
+    }
     const handleSubmit = (e)=>{
         e.preventDefault()
         const contact = {
@@ -13,11 +22,13 @@ const AddContact = () => {
             lastName: e.target['lastName'].value,
             email: e.target['email'].value,
             contactNumber: e.target['contactNumber'].value,
-            user_id: 1
+            user_id: user.id
         }
 
         addContact({contact})
+        // console.log(contact)
         e.target.reset()
+        setAlert(true)
     }
 
     return (
@@ -28,6 +39,14 @@ const AddContact = () => {
                         <Link to="/" className="btn btn-outline-secondary">Go Back</Link>
                     </div>
                     <form className="card-body text-dark" onSubmit={handleSubmit}>
+                        {
+                            alert ?
+                            <div className="alert alert-success d-flex justify-content-between align-items-center" 
+                            role="alert">
+                                <span>Contact added</span> 
+                                <button className="btn btn-sm" onClick={()=> setAlert(false)} >X</button>
+                            </div> : ''
+                        }
                         <div className="form-group">
                             <label htmlFor="firstName" className="float-left">First Name: </label>
                             <input 

@@ -4,6 +4,8 @@ import contactsServise from '../services/contacts';
 export default function useContacts(){
     const [contacts, setContacts] = useState([])
     const [singleContact, setSingleContact] = useState([])
+    const [state, setState] = useState({loading: false,
+        error: false})
 
     const getContacts = useCallback(({userId})=>{
         contactsServise.getAll({userId})
@@ -34,18 +36,20 @@ export default function useContacts(){
     },[])
 
     const addContact = useCallback(({contact})=>{
+        setState({loading: true, error: false})
         contactsServise.add({contact})
             .then(res =>{
+                setState({loading: false, error: false})
                 return res
             }).catch(err =>{
-                console.log(err)
+                setState({loading: true, error: true})
             })
     },[])
 
     const deleteContact = useCallback(({contactId}) =>{
         contactsServise.delete({contactId})
             .then(res =>{   
-                setSingleContact(res)
+                return true
             }).catch(err =>{
                 console.log(err)
             })
@@ -54,6 +58,7 @@ export default function useContacts(){
     return {
         contacts,
         singleContact,
+        state,
         addContact,
         getContacts,
         getOneContact,

@@ -1,24 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Route, Switch} from 'wouter';
+
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Header from './components/Header';
+
+import { UserContextProvider } from './context/UserContext';
+
 import './App.css';
+import 'bootswatch/dist/sketchy/bootstrap.min.css'
+import UpdateContact from 'pages/updateContact';
+import AddContact from 'pages/addContact';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserContextProvider>
+        <Header></Header>
+        <Switch>
+          <Route 
+            component={Home}
+            path="/"
+            />
+          <Route 
+            component={Login}
+            path="/login"
+            />
+          <Route 
+            component={UpdateContact}
+            path="/update/:id"
+            />
+          <Route 
+            component={AddContact}
+            path="/add"
+            />
+        </Switch>
+      </UserContextProvider>
     </div>
   );
 }

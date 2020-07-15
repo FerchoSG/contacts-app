@@ -1,0 +1,16 @@
+.ct-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ct-header a {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+
+}
+
+.ct-header a:hover {
+  text-decoration: underline;
+}

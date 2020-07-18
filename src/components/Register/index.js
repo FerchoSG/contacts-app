@@ -54,7 +54,7 @@ const Register = () => {
                     <button 
                         className="btn btn-block btn-lg btn-success" 
                         type="submit">
-                        Login
+                        Register
                     </button>
                 </div>
             </form>

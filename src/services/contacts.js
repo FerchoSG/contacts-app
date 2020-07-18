@@ -1,6 +1,6 @@
 import {ENDPOINT} from './login'
 const jwt = JSON.parse(localStorage.getItem('jwt'))
-const token = jwt ? jwt.token : null
+export const token = jwt ? jwt.token : null
 
 export default class ContactsService{
     static async getAll({userId}){

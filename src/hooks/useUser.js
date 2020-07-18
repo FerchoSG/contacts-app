@@ -2,6 +2,7 @@ import { useContext, useCallback, useState } from "react";
 import Context from "../context/UserContext";
 import loginService from '../services/login';
 import RegisterService from '../services/register';
+import ProfileService from '../services/profile';
 
 export default function useUser(){
     const {jwt, setJWT, user, setUser} = useContext(Context);
@@ -52,6 +53,16 @@ export default function useUser(){
         setUser(null)
     },[setJWT, setUser])
 
+    const editProfile = useCallback(({id, editedProfile})=>{
+        ProfileService({id, editedProfile})
+        .then(res => {
+            return res
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+    })
+
     return {
         isLogged: Boolean(jwt),
         isLoginLoading: state.loading,
@@ -59,6 +70,7 @@ export default function useUser(){
         login, 
         logout,
         register,
+        editProfile,
         user
     }
 }

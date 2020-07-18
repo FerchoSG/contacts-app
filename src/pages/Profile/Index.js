@@ -1,47 +1,105 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import useUser from 'hooks/useUser';
 import { Link } from 'wouter';
 
+let editingStyles ={
+    border: "none", 
+    borderBottom: ".2px solid rgba(0,0,0,.4)"
+    // boxShadow: "0 0 2px 2px rgba(0,0,0,.4)"
+}
+
 const Profile = () => {
     const [editing, setEditing] = useState(false)
-    const {user} = useUser()
+    const {user, editProfile} = useUser()
+    const [alert, setAlert] = useState(false)
+
+    const handleSubmit = (e)=>{
+        e.preventDefault()
+        let editedProfile = {
+            name: e.target['name'].value,
+            username: e.target['username'].value,
+            email: e.target['email'].value,
+            password: e.target['password'].value,
+        }
+        
+        editProfile({id: user.id, editedProfile});
+        setAlert(true)
+    }
+    
+    if(alert){
+        setTimeout(() => {
+            setAlert(false)
+        }, 2000);
+    }
+
     return (
-        <div className="container pt-4">
-            <div className="card text-dark">
+        <div className="container col-6 pt-4">
+            <form className="card text-dark" onSubmit={handleSubmit} >
                 <div className="card-header d-flex justify-content-between align-items-center">
                     <h2 className="card-title">Profile</h2>
                     <Link className="btn btn-md btn-outline-dark" to="/">Home</Link>
                 </div>
+                {
+                    alert ?
+                    <div className="m-2 alert alert-success d-flex justify-content-between align-items-center" 
+                    role="alert">
+                        <span>Profile Edited</span> 
+                        <button className="btn btn-sm" onClick={()=> setAlert(false)} >X</button>
+                    </div> : ''
+                }
                 <div className="card-body" style={{padding: ".8em 4em"}} >
                     <div className="form-group">
                         <label htmlFor="name" className="text-dark float-left">Name:</label>
-                        <input type="text" name="name" className="form-control" value={user?.name}/>
+                        <input style={editing ? {} : editingStyles} 
+                               type="text" name="name" className="form-control" 
+                               value={editing ? null : user?.name}
+                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor="username" className="text-dark float-left">Username:</label>
-                        <input type="text" name="username" className="form-control" value={user?.username}/>
+                        <input style={editing ? {} : editingStyles} 
+                               type="text" name="username" className="form-control" 
+                               value={editing ? null : user?.username}
+                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor="email" className="text-dark float-left">Email:</label>
-                        <input type="email" name="email"  className="form-control" value={user?.email}/>
+                        <input style={editing ? {} : editingStyles} 
+                               type="email" name="email"  className="form-control" 
+                               value={editing ? null : user?.email}
+                        />
                     </div>
                     { editing ?
                         <div className="form-group">
-                            <label htmlFor="password" className="text-dark float-left">Email:</label>
-                            <input type="password" name="password" className="form-control" value={user?.email}/>
+                            <label htmlFor="password" className="text-dark float-left">Password:</label>
+                            <input type="password" name="password" className="form-control" value={editing ? null : ''}/>
                         </div> : ''
                     }
 
                 </div>
-                <div className="card-footer">
-                    <button 
-                        className="btn btn-outline-warning btn-lg float-left" 
-                        style={{padding: ".1em 3em"}} 
-                        onClick={()=> setEditing(true)} >
-                        Edit
-                    </button>
+                <div className="card-footer d-flex justify-content-between">
+                    { editing ?
+                        <button className="btn btn-outline-warning btn-lg float-left" 
+                                 >
+                          Edit Profile
+                        </button>
+                      : 
+                        <div 
+                            className="btn btn-outline-warning btn-lg float-left" 
+                             
+                            onClick={()=> setEditing(true)} >
+                            start Editting
+                        </div>
+                    }
+                    { editing ?
+                      <div className="btn btn-outline-info btn-lg float-left" 
+                       onClick={()=> setEditing(false)} >
+                        Cancelar
+                      </div>
+                      : ''
+                    }
                 </div>
-            </div>
+            </form>
         </div>
     );
 }

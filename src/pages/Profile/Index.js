@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import useUser from 'hooks/useUser';
 import { Link } from 'wouter';
 

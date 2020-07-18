@@ -61,7 +61,7 @@ export default function useUser(){
         .catch(err =>{
             console.log(err)
         })
-    })
+    },[])
 
     return {
         isLogged: Boolean(jwt),

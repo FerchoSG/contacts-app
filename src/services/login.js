@@ -1,4 +1,4 @@
-export const ENDPOINT = 'http://localhost:4000/api/v1/'
+export const ENDPOINT = 'https://api-contactsapp.herokuapp.com/api/v1'
 
 export default async function login({username, password}){
     const res = await fetch(`${ENDPOINT}/login`, {

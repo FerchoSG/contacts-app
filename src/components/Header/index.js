@@ -11,7 +11,9 @@ export default function Header() {
     return (
         <header className="navbar navbar-expand-lg navbar-darkd-flex justify-content-between">
             <div>
-                <h3 className="navbar-brand">Contacts App</h3>
+                <h3 className="navbar-brand" >
+                    <Link to="/" className="text-light" style={{textDecoration: "none"}}>Contacts App</Link>
+                </h3>
                 <Link to="/profile" className="navbar-link text-light" style={{textDecoration: "none"}} > 
                     {isLogged ? `${user?.username} profile` : ''} 
                 </Link>

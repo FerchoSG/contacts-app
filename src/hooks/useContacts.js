@@ -2,8 +2,8 @@ import {useState, useCallback} from 'react';
 import contactsServise from '../services/contacts';
 
 export default function useContacts(){
-    const [contacts, setContacts] = useState([])
-    const [singleContact, setSingleContact] = useState([])
+    const [contacts, setContacts] = useState(null)
+    const [singleContact, setSingleContact] = useState(null)
     const [state, setState] = useState({loading: false,
         error: false})
 
@@ -12,8 +12,10 @@ export default function useContacts(){
             .then(res =>{
                 localStorage.setItem('contacts', JSON.stringify(res.data))
                 setContacts(res.data)
+                return true
             }).catch(err =>{
                 console.log(err)
+                return false
             })
     },[])
 
@@ -21,8 +23,10 @@ export default function useContacts(){
         contactsServise.getOne({id})
             .then(res =>{
                 setSingleContact(res.data)
+                return true
             }).catch(err =>{
                 console.log(err)
+                return false
             })
     },[])
 
@@ -52,6 +56,7 @@ export default function useContacts(){
                 return true
             }).catch(err =>{
                 console.log(err)
+                return false
             })
     }, [])
 

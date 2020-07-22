@@ -12,6 +12,7 @@ import 'bootswatch/dist/sketchy/bootstrap.min.css'
 import UpdateContact from 'pages/updateContact';
 import AddContact from 'pages/addContact';
 import Profile from 'pages/Profile/Index';
+import Detail from 'pages/Detail';
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
           <Route 
             component={Profile}
             path="/profile"
+          />
+          <Route 
+            component={Detail}
+            path="/detail/:id"
           />
         </Switch>
       </UserContextProvider>

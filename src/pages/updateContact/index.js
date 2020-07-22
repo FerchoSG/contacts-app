@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import useContacts from 'hooks/useContacts';
 import { Link } from 'wouter';
 import useUser from 'hooks/useUser';
+import Spinner from 'components/Spinner';
 
 const UpdateContact = ({params}) => {
+    let {id} = params
     const {getOneContact, singleContact, updateContact } = useContacts()
     const [alert, setAlert] = useState(false)
     const {user} = useUser()
@@ -15,8 +17,8 @@ const UpdateContact = ({params}) => {
     }
 
     useEffect(function(){
-        getOneContact({id: params.id})
-    },[params.id, getOneContact])
+        getOneContact({id})
+    },[id, getOneContact])
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -28,21 +30,21 @@ const UpdateContact = ({params}) => {
             user_id: user.id
         }
 
-        updateContact({id: params.id, contact})
+        updateContact({id, contact})
         e.target.reset()
         setAlert(true)
     }
 
     return (
        <>
-        {
-            singleContact ?
-            <div className="container col-8 mt-4">
+            <div className="container col-lg-6 mt-4">
                 <div className="card">
                     <div className="card-header bg-warning d-flex justify-content-between align-items-center">
                         <h3 className="text-dark">Update Contact</h3>
-                        <Link to="/" className="btn btn-outline-secondary">Go Back</Link>
+                        <Link to={`/detail/${id}`} className="btn btn-outline-secondary">Go Back</Link>
                     </div>
+                {
+                    singleContact ?
                     <form className="card-body  text-dark" onSubmit={handleSubmit}>
                         {alert ?
                             <div className="alert alert-success d-flex justify-content-between align-items-center" 
@@ -81,10 +83,14 @@ const UpdateContact = ({params}) => {
                         </div>
                         <button className="btn btn-block btn-outline-info">Edit Contact</button>
                     </form>
+                    : 
+                    <div className="d-flex justify-content-center align-items-center"
+                        style={{minHeight: "60vh"}}>
+                        <Spinner color="#0333" />
+                    </div>
+                }
                 </div>
             </div>
-            : ''
-        }
        </>
     );
 }

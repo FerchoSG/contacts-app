@@ -33,7 +33,7 @@ const Profile = () => {
     }
 
     return (
-        <div className="container col-6 pt-4">
+        <div className="container col-lg-6 pt-2 ">
             <form className="card text-dark" onSubmit={handleSubmit} >
                 <div className="card-header d-flex justify-content-between align-items-center">
                     <h2 className="card-title">Profile</h2>
@@ -47,7 +47,7 @@ const Profile = () => {
                         <button className="btn btn-sm" onClick={()=> setAlert(false)} >X</button>
                     </div> : ''
                 }
-                <div className="card-body" style={{padding: ".8em 4em"}} >
+                <div className="card-body" style={{padding: ".8em 2em"}} >
                     <div className="form-group">
                         <label htmlFor="name" className="text-dark float-left">Name:</label>
                         <input style={editing ? {} : editingStyles} 

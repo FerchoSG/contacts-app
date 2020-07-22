@@ -5,33 +5,48 @@ import useUser from 'hooks/useUser';
 import ContactList from 'components/ContactsList';
 import useContacts from 'hooks/useContacts';
 import Register from 'components/Register';
+import Spinner from 'components/Spinner';
+
+
+import './Home.css';
 
 const Home = () => {
     const {contacts, getContacts} = useContacts()
     const {user, isLogged} = useUser()
-    const [hasDeletedContact, setHasDeletedContact] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        if(isLogged || hasDeletedContact){
+        setLoading(true)
+        if(isLogged){
             getContacts({userId: user.id})
-            setHasDeletedContact(false)
+        }
+        if(contacts !== null){
+            setLoading(false)
         }
         // eslint-disable-next-line
-    },[isLogged, getContacts, hasDeletedContact])
-
+    },[isLogged, getContacts, contacts])
+    
     return (
         <div className="container pt-4">
             {
-                isLogged && contacts
-                ? 
-                <div>
-                    <h2>{user.username} Contacts</h2>
-                    <ContactList contacts={contacts} setHasDeletedContact={setHasDeletedContact}/>
-                    <Link className="btn rounded btn-success btn-lg" to="/add"
-                          style={{position: "absolute", bottom: "2em", right: "1em"}} >
-                        Add Contact
-                    </Link>
-                </div>
+                isLogged
+                ?  
+                    <div>
+                        <h2>{user.username} Contacts</h2>
+                        { loading ?
+                            <div className="d-flex justify-content-center align-items-center" 
+                                style={{minHeight: "40vh"}}>
+                                <Spinner color="#fff" />
+                            </div> :
+                            <ContactList contacts={contacts} />
+
+                        }
+
+                        <Link className="btn rounded btn-success btn-lg" to="/add"
+                            style={{position: "absolute", bottom: "2em", right: "1em"}} >
+                            Add Contact
+                        </Link>
+                    </div> 
                 : <Register/>
             }
             

@@ -19,7 +19,7 @@ const Login = () => {
     },[isLogged, navigate])
 
     return (
-        <div className="container col-6 border border-light rounded mt-4 p-4">
+        <div className="container col-lg-6 border border-light rounded mt-4 p-4">
            <div className="mt-4">
                 <h2>Login</h2>
                     { isLoginLoading 

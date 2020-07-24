@@ -32,7 +32,7 @@ const AddContact = () => {
     }
 
     return (
-        <div className="container col-8 mt-4">
+        <div className="container col-lg-8 mt-4">
                 <div className="card">
                     <div className="card-header bg-info d-flex justify-content-between align-items-center">
                         <h3 className="text-dark">Add Contact</h3>

@@ -19,12 +19,10 @@ const Home = () => {
         setLoading(true)
         if(isLogged){
             getContacts({userId: user.id})
-        }
-        if(contacts !== null){
             setLoading(false)
         }
         // eslint-disable-next-line
-    },[isLogged, getContacts, contacts])
+    },[isLogged, getContacts])
     
     return (
         <div className="container pt-4">

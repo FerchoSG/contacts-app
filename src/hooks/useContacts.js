@@ -2,32 +2,45 @@ import {useState, useCallback} from 'react';
 import contactsServise from '../services/contacts';
 
 export default function useContacts(){
-    const [contacts, setContacts] = useState(null)
-    const [singleContact, setSingleContact] = useState(null)
+    const [contacts, setContacts] = useState([])
+    const [singleContact, setSingleContact] = useState(false)
     const [state, setState] = useState({loading: false,
         error: false})
 
     const getContacts = useCallback(({userId})=>{
-        contactsServise.getAll({userId})
-            .then(res =>{
-                localStorage.setItem('contacts', JSON.stringify(res.data))
-                setContacts(res.data)
-                return true
-            }).catch(err =>{
-                console.log(err)
-                return false
-            })
+        let contactsLS = JSON.parse(localStorage.getItem('contacts')) 
+        if(contactsLS){
+            setContacts(contactsLS)
+            return true
+        }else{
+            contactsServise.getAll({userId})
+                .then(res =>{
+                    localStorage.setItem('contacts', JSON.stringify(res.data))
+                    setContacts(res.data)
+                    return true
+                }).catch(err =>{
+                    console.log(err)
+                    return false
+                })
+        }
     },[])
 
     const getOneContact = useCallback(({id})=>{
-        contactsServise.getOne({id})
-            .then(res =>{
-                setSingleContact(res.data)
-                return true
-            }).catch(err =>{
-                console.log(err)
-                return false
-            })
+        let contactsLS = JSON.parse(localStorage.getItem('contacts')) 
+        if(contactsLS){
+            let contactLS = contactsLS.filter(cont => cont.id === Number(id))
+            setSingleContact(contactLS[0])
+        }else{
+            contactsServise.getOne({id})
+                .then(res =>{
+                    setSingleContact(res.data)
+                    return true
+                }).catch(err =>{
+                    console.log(err)
+                    return false
+                })
+        }
+        
     },[])
 
     const updateContact = useCallback(({id, contact})=>{

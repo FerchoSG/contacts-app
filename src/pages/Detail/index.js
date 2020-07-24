@@ -14,9 +14,11 @@ const Detail = (props) => {
     useEffect(()=>{
         setLoading(true)
         getOneContact({id})
-        if(singleContact !== null)
-            setLoading(false)
-    },[getOneContact, id, singleContact])
+        setLoading(false)
+    },[getOneContact, id])
+    if(singleContact){    
+        console.log(singleContact)
+    }
 
     const handleDelete = (e)=>{
         e.preventDefault()
@@ -41,7 +43,7 @@ const Detail = (props) => {
             </div>
             <div className="card-body text-dark">
                 {
-                    loading ? 
+                    loading && singleContact ? 
                     <Spinner color="#0333"/> : 
                     <ul className="list-group list-group-flush">
                     <li className="list-group-item">

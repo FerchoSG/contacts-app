@@ -7,18 +7,12 @@ import Spinner from 'components/Spinner';
 const Detail = (props) => {
     let {id} = props.params
     const {getOneContact, singleContact} = UseContacts()
-    const [loading, setLoading] = useState(true)
     const {deleteContact} = UseContacts()
     const [, navigate] = useLocation()
 
     useEffect(()=>{
-        setLoading(true)
         getOneContact({id})
-        setLoading(false)
     },[getOneContact, id])
-    if(singleContact){    
-        console.log(singleContact)
-    }
 
     const handleDelete = (e)=>{
         e.preventDefault()
@@ -43,28 +37,28 @@ const Detail = (props) => {
             </div>
             <div className="card-body text-dark">
                 {
-                    loading && singleContact ? 
-                    <Spinner color="#0333"/> : 
+                    singleContact ?  
                     <ul className="list-group list-group-flush">
                     <li className="list-group-item">
                         <span className="float-left">Name:</span>  
-                        <span className="float-lg-right">
-                            {`${singleContact.firstName} ${singleContact.lastName}`}
+                        <span className="float-right">
+                            {`${ singleContact ? singleContact.firstName :''} ${singleContact ? singleContact?.lastName : ''}`}
                         </span>
                     </li>
                     <li className="list-group-item">
                         <span className="float-left">Email:</span>
-                        <span className="float-lg-right">
-                            {singleContact.email}
+                        <span className="float-right">
+                            {singleContact?.email}
                         </span> 
                     </li>
                     <li className="list-group-item">
                         <span className="float-left">Phone Number:</span> 
-                        <span className="float-lg-right">
-                            {singleContact.contactNumber}
+                        <span className="float-right">
+                            {singleContact?.contactNumber}
                         </span> 
                     </li>
                   </ul>
+                  : <Spinner color="#0333"/> 
                 }
             </div>
             <div className="card-footer d-flex justify-content-between">

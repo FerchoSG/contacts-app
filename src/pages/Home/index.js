@@ -30,7 +30,13 @@ const Home = () => {
                 isLogged
                 ?  
                     <div>
+                        <div className="d-flex align-items-center justify-content-between col-lg-8 container mb-2">
                         <h2>{user.username} Contacts</h2>
+                        <Link className="btn btn-outline-success" 
+                            to="/add" >
+                            New Contact
+                        </Link>
+                        </div>
                         { loading ?
                             <div className="d-flex justify-content-center align-items-center" 
                                 style={{minHeight: "40vh"}}>
@@ -40,10 +46,7 @@ const Home = () => {
 
                         }
 
-                        <Link className="btn rounded btn-success btn-lg" to="/add"
-                            style={{position: "absolute", bottom: "2em", right: "1em"}} >
-                            Add Contact
-                        </Link>
+                        
                     </div> 
                 : <Register/>
             }

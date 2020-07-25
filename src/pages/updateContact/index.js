@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'wouter';
 
-import UndoIcon from '@material-ui/icons/Undo';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import EditIcon from '@material-ui/icons/Edit';
 import useUser from 'hooks/useUser';
 import Spinner from 'components/Spinner';
 import useContacts from 'hooks/useContacts';
@@ -42,10 +43,10 @@ const UpdateContact = ({params}) => {
             <div className="container col-lg-6 mt-4">
                 <div className="card">
                     <div className="card-header bg-warning d-flex justify-content-between align-items-center">
-                        <h3 className="text-dark">Update Contact</h3>
                         <Link to={`/detail/${id}`} className="btn btn-outline-secondary">
-                            <UndoIcon style={{cursor: "pointer"}} />
+                            <ArrowBackIcon className="text-dark" style={{cursor: "pointer"}} />
                         </Link>
+                        <h3 className="text-dark">Update Contact</h3>
                     </div>
                 {
                     singleContact ?
@@ -85,7 +86,10 @@ const UpdateContact = ({params}) => {
                                 name="contactNumber" placeholder={singleContact.contactNumber}
                             />
                         </div>
-                        <button className="btn btn-block btn-outline-info">Edit Contact</button>
+                        <button className="btn btn-outline-info float-left">
+                            <EditIcon className="mr-1" />
+                            <span>Edit Contact</span>
+                        </button>
                     </form>
                     : 
                     <div className="d-flex justify-content-center align-items-center"

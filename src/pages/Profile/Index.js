@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import useUser from 'hooks/useUser';
 import { Link } from 'wouter';
 
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import EditIcon from '@material-ui/icons/Edit';
+
 let editingStyles ={
     border: "none", 
     borderBottom: ".2px solid rgba(0,0,0,.4)"
@@ -37,7 +41,9 @@ const Profile = () => {
             <form className="card text-dark" onSubmit={handleSubmit} >
                 <div className="card-header d-flex justify-content-between align-items-center">
                     <h2 className="card-title">Profile</h2>
-                    <Link className="btn btn-md btn-outline-dark" to="/">Home</Link>
+                    <Link className="btn btn-md btn-outline-dark" to="/">
+                        <HomeOutlinedIcon style={{cursor: "pointer"}} />
+                    </Link>
                 </div>
                 {
                     alert ?
@@ -79,22 +85,25 @@ const Profile = () => {
                 </div>
                 <div className="card-footer d-flex justify-content-between">
                     { editing ?
-                        <button className="btn btn-outline-warning btn-lg float-left" 
+                        <button className="btn btn-outline-info btn-lg float-left" 
                                  >
-                          Edit Profile
+                            <EditIcon />
+                            Edit Profile
                         </button>
                       : 
                         <div 
                             className="btn btn-outline-warning btn-lg float-left" 
                              
                             onClick={()=> setEditing(true)} >
+                            <EditIcon />
                             start Editting
                         </div>
                     }
                     { editing ?
-                      <div className="btn btn-outline-info btn-lg float-left" 
+                      <div className="btn btn-outline-warning btn-lg float-left" 
                        onClick={()=> setEditing(false)} >
-                        Cancelar
+                           <CancelOutlinedIcon />
+                            Cancelar
                       </div>
                       : ''
                     }

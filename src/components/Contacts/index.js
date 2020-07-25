@@ -1,17 +1,10 @@
 import React from 'react';
 import { Link } from 'wouter';
-import useContacts from 'hooks/useContacts';
 
-const Contact = ({contact, setHasDeletedContact}) => {
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
-    const {deleteContact} = useContacts()
+const Contact = ({contact}) => {
 
-    // eslint-disable-next-line
-    function handleDelete(e){
-        e.preventDefault()
-        deleteContact({contactId: contact.id})
-        setHasDeletedContact(true)
-    }
 
     return (
         <tr>
@@ -20,6 +13,7 @@ const Contact = ({contact, setHasDeletedContact}) => {
                 <Link className="btn btn-sm btn-info"
                     to={`/detail/${contact.id}`} >
                     More Details
+                    <InfoOutlinedIcon className="ml-1" />
                 </Link>
             </td>
         </tr>

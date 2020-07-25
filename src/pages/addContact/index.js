@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
 import { Link } from 'wouter';
 
+import ArrowBackIcon from '@material-ui/icons/ArrowBackIosSharp';
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+// import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@material-ui/icons/AddCircleOutlineOutlined';
+
 import useContacts from 'hooks/useContacts';
 import useUser from 'hooks/useUser';
 
@@ -32,11 +37,13 @@ const AddContact = () => {
     }
 
     return (
-        <div className="container col-lg-8 mt-4">
+        <div className="container col-lg-6 mt-4">
                 <div className="card">
                     <div className="card-header bg-info d-flex justify-content-between align-items-center">
+                        <Link to="/" >
+                            <ArrowBackIcon className="border border-dark text-dark"/>
+                        </Link>
                         <h3 className="text-dark">Add Contact</h3>
-                        <Link to="/" className="btn btn-outline-secondary">Go Back</Link>
                     </div>
                     <form className="card-body text-dark" onSubmit={handleSubmit}>
                         {
@@ -75,7 +82,16 @@ const AddContact = () => {
                                 name="contactNumber" 
                             />
                         </div>
-                        <button className="btn btn-block btn-lg btn-outline-success">Add Contact</button>
+                        <div className="d-flex justify-content-between align-items-center">
+                            <button className="btn btn-outline-success">
+                                <AddIcon />
+                                <span >Add Contact</span>
+                            </button>
+                            <Link to="/" className="btn btn-outline-warning">
+                                <CancelOutlinedIcon />
+                                <span >Cancel</span>
+                            </Link>
+                        </div>
                     </form>
                 </div>
             </div>

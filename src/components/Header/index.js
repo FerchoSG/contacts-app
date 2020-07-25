@@ -1,4 +1,5 @@
 import React from "react";
+import {HomeOutlined, ExitToApp} from '@material-ui/icons';
 import { Link } from "wouter";
 
 
@@ -12,7 +13,9 @@ export default function Header() {
         <header className="navbar navbar-expand-lg navbar-darkd-flex justify-content-between">
             <div>
                 <h3 className="navbar-brand" >
-                    <Link to="/" className="text-light" style={{textDecoration: "none"}}>Contacts App</Link>
+                    <Link to="/" className="text-light" style={{textDecoration: "none", cursor: "pointer"}}>
+                        <HomeOutlined style={{cursor: "pointer"}} />
+                    </Link>
                 </h3>
                 <Link to="/profile" className="navbar-link text-light" style={{textDecoration: "none"}} > 
                     {isLogged ? `${user?.username} profile` : ''} 
@@ -20,7 +23,9 @@ export default function Header() {
             </div>
             {
                 isLogged
-                ? <Link className="text-light" to="/" onClick={logout}>Logout</Link>
+                ? <Link className="text-light" to="/" onClick={logout}>
+                        <ExitToApp style={{cursor: "pointer"}} />
+                </Link>
                 : <Link className="text-light" to="/login">Login</Link>
             }
         </header>

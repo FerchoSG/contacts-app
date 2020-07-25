@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {AddCircle} from '@material-ui/icons';
 import { Link } from 'wouter';
 
 import useUser from 'hooks/useUser';
@@ -34,7 +35,7 @@ const Home = () => {
                         <h2>{user.username} Contacts</h2>
                         <Link className="btn btn-outline-success" 
                             to="/add" >
-                            New Contact
+                            <AddCircle className="text-success" style={{fontSize: "2.4em", cursor: "pointer"}} />
                         </Link>
                         </div>
                         { loading ?

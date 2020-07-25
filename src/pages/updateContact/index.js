@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import useContacts from 'hooks/useContacts';
 import { Link } from 'wouter';
+
+import UndoIcon from '@material-ui/icons/Undo';
 import useUser from 'hooks/useUser';
 import Spinner from 'components/Spinner';
+import useContacts from 'hooks/useContacts';
 
 const UpdateContact = ({params}) => {
     let {id} = params
@@ -41,7 +43,9 @@ const UpdateContact = ({params}) => {
                 <div className="card">
                     <div className="card-header bg-warning d-flex justify-content-between align-items-center">
                         <h3 className="text-dark">Update Contact</h3>
-                        <Link to={`/detail/${id}`} className="btn btn-outline-secondary">Go Back</Link>
+                        <Link to={`/detail/${id}`} className="btn btn-outline-secondary">
+                            <UndoIcon style={{cursor: "pointer"}} />
+                        </Link>
                     </div>
                 {
                     singleContact ?

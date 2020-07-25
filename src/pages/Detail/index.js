@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
+import DeleteOutlined from '@material-ui/icons/DeleteOutlined';
+import EditIcon from '@material-ui/icons/Edit';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 
 import UseContacts from 'hooks/useContacts';
 import Spinner from 'components/Spinner';
@@ -32,7 +35,7 @@ const Detail = (props) => {
             <div className="card-header bg-info text-light d-flex justify-content-between">
                 <h4>Contact Details</h4>
                 <Link to="/" className="btn btn-sm btn-outline-light" style={{borderRadius: "8px"}} >
-                    Home
+                    <HomeOutlinedIcon style={{cursor: "pointer"}} />
                     </Link>
             </div>
             <div className="card-body text-dark">
@@ -62,11 +65,13 @@ const Detail = (props) => {
                 }
             </div>
             <div className="card-footer d-flex justify-content-between">
-                <Link className="btn btn-outline-danger btn-lg"
+                <Link className="btn btn-outline-danger"
                     onClick={handleDelete}>
-                    Delete
+                    <DeleteOutlined />
+                    Delete 
                 </Link>
-                <Link className="btn btn-outline-warning btn-lg" to={`/update/${id}`}>
+                <Link className="btn btn-outline-warning" to={`/update/${id}`}>
+                    <EditIcon />
                     Update
                 </Link>
             </div>

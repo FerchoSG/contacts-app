@@ -19,7 +19,7 @@ const Register = () => {
         register({user: newUser})
     }
     return (
-        <div className="container col-lg-8 col-sm-12">
+        <div className="container col-lg-8">
             <form className="card bg-light text-dark" onSubmit={handleSubmit}>
                 <h2 className="card-header bg-dark text-light">Register</h2>
                 <div className="p-3">

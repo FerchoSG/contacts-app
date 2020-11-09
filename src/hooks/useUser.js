@@ -35,15 +35,8 @@ export default function useUser(){
             })
     },[setJWT, setUser])
 
-    const register = useCallback(({user})=>{
-        RegisterService({user})
-        .then(res => {
-            console.log('/*******************/',res)
-            return res
-        })
-        .catch(err =>{
-            console.log(err)
-        })
+    const register = useCallback( async ({user})=>{
+        return await RegisterService({user})
     },[])
 
     const logout = useCallback(()=>{

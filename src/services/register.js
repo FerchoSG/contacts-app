@@ -10,6 +10,11 @@ export default async function register({user}){
     })
 
     const data = await res.json()
+    console.log(data)
+    if(data.errors){
+        return {error: true, message: data.errors[0].message}
+    }else{
+        return {error: false, message: data.message}
+    }
 
-    return data ? true : false
 }

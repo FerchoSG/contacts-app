@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import useUser from 'hooks/useUser';
+import { useLocation } from "wouter";
 
 
 const Register = () => {
     // eslint-disable-next-line
     const [user, setUser] = useState('')
     const {register} = useUser()
+    const [,navigate] = useLocation()
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault()
         const newUser = {
             name: e.target['name'].value,
@@ -16,7 +18,13 @@ const Register = () => {
             password: e.target['password'].value
         }
 
-        register({user: newUser})
+        const {error, message} = await register({user: newUser})
+        if(error){
+            alert(message)
+        }else{
+            alert(message)
+            navigate('/login')
+        }
     }
     return (
         <div className="container col-lg-8">

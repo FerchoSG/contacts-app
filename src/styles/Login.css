@@ -1,0 +1,120 @@
+.login__container{
+    color:#fff;
+    width: 100%;
+    min-height: 80vh;
+}
+.login, .login__container{
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.login{
+    border-radius: 12px;
+    background: linear-gradient(145deg, #2b2f38, #24282f);
+    box-shadow:  8px 8px 31px #131518,
+                 -8px -8px 31px #3d4350;
+    /* padding: 1rem; */
+}
+.login__img{
+    min-height: 60vh;
+    /* height: 100%; */
+    object-fit: cover;
+}
+
+.login__img, .login__content{
+    width: 35vw
+}
+.login__content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aquamarine; */
+}
+
+.login__title{
+    font-size: 32px;
+}
+label{
+    display: block;
+    text-align: left;
+    margin-bottom: .5rem
+    
+}
+.form-input{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: solid #FFF 1px;
+    width: 16rem;
+    margin-bottom: 1rem;
+    color: #fff
+}
+
+.form-btns{
+    display: flex;
+    gap: .5rem;
+    margin-top: .5rem;
+    margin-bottom: 1rem
+}
+
+.btn{
+    padding: .6rem 2rem;
+    width: 8rem;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight:bold;
+    cursor: pointer;
+}
+
+.btn.login-btn{
+    /* background-color: #ff6347 */
+    color: #fc6e55;
+    border-radius: 9px;
+    background: linear-gradient(145deg, #2b2f38, #24282f);
+    box-shadow:  1px 1px 3px  #bd4935,
+                -1px -1px 3px #f08f7d;
+}
+
+.btn.register-btn{
+    /* background-color: #008080 */
+    color: #08c7c7;
+    border-radius: 9px;
+    background: linear-gradient(145deg, #2b2f38, #24282f);
+    box-shadow:  1px 1px 3px  #108080,
+                -1px -1px 3px #96e2e2;
+}
+
+@media screen and (max-width: 768px){
+
+    .btn{
+        width: 8rem;
+        /* margin: 0;
+        margin-right: .5rem;
+        margin-bottom: .5rem; */
+    }
+    .login__content{
+        width: 100%
+    }
+    .login{
+        width: 100vw
+    }
+    
+}
+
+@media screen and (max-width: 675px){
+    .login{
+        flex-direction: column;
+    }
+
+    .login__content{
+        width: 80vw
+    }
+
+    .login__img{
+        display: none;
+    }
+}

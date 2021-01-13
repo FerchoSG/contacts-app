@@ -1,0 +1,59 @@
+.Contacts__header, .Contact__header-options, .Contact__header-sort{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Contacts__header{
+    padding: 0 2rem;
+}
+.Contact__header-options{
+    gap: .5rem;
+}
+.contacts{
+    max-height: 75vh;
+    overflow-y: scroll;
+}
+.contacts-table{
+    border-collapse: separate;
+    border-spacing: 0 .8rem;
+    margin: auto;
+    padding: 0 1rem;
+    width: 90%;
+}
+.contact-list-item{
+    text-align: left;
+    border-radius: .2rem;
+    background: #f0f0f0;
+    box-shadow:  3px 3px 6px #656565,
+                 -3px -3px 6px #ffffff;
+}
+.contact-list-item td:first-child {
+    border-top-left-radius: .2rem;
+    border-bottom-left-radius: .2rem;
+    text-align: center
+}
+.contact-list-item td:last-child{
+    border-top-right-radius: .2rem;
+    border-bottom-right-radius: .2rem;
+    text-align: center;
+}
+.contact-list-item td{
+    padding-top: .3em;
+    padding-bottom: .3rem;
+}
+.contact-img{
+    width: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.btn{
+    padding: .6rem 1rem;
+    border: none;
+    outline: none;
+}
+
+.add-contact{
+    background-color: var(--dark-blue);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.8);
+    border-radius: .2rem;
+}

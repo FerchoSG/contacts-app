@@ -1,13 +1,13 @@
 import React from 'react'
 import Admin from 'admin/Admin'
-import Profile from './Profile'
+import Contact from 'contacts'
 
 export default function (){
 
     return (
         <div>
             <Admin>
-                <Profile/>
+                <Contact/>
             </Admin>
         </div>
     )

@@ -1,0 +1,40 @@
+.contacts{
+    max-height: 75vh;
+    overflow-y: scroll;
+}
+.contacts-table{
+    border-collapse: separate;
+    border-spacing: 0 .8rem;
+    margin: auto;
+    padding: 1rem;
+    width: 90%;
+}
+.contact-list-item{
+    text-align: left;
+    border-radius: .8rem;
+    background: #f0f0f0;
+    box-shadow:  3px 3px 6px #656565,
+                 -3px -3px 6px #ffffff;
+}
+.contact-list-item td:first-child {
+    border-top-left-radius: .8rem;
+    border-bottom-left-radius: .8rem;
+    text-align: center
+}
+.contact-list-item td:last-child{
+    border-top-right-radius: .8rem;
+    border-bottom-right-radius: .8rem;
+    text-align: center;
+}
+.contact-list-item td{
+    /* background-color: #FFF; */
+    padding-top: .3em;
+    padding-bottom: .3rem;
+    /* padding-left: .6rem */
+}
+.contact-img{
+    width: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+    /* border: 1px solid #000; */
+}

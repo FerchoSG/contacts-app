@@ -1,13 +1,13 @@
 import React from 'react'
 import Admin from 'admin/Admin'
-import Profile from './Profile'
+import Settings from './Settings'
 
 export default function (){
 
     return (
         <div>
             <Admin>
-                <Profile/>
+                <Settings/>
             </Admin>
         </div>
     )

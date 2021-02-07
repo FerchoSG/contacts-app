@@ -1,7 +1,16 @@
 import React from 'react'
 
+import Swal from 'sweetalert2';
 export default function () {
 
+    const addContact = () =>{
+        Swal.fire({
+            title: 'Error!',
+            text: 'Do you want to continue',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+    }
     return (
         <div className="Contacts__header">
            <div className="Contact__header-options">
@@ -13,7 +22,7 @@ export default function () {
                 </div>
            </div>
            <div>
-               <button class="btn add-contact"> Add Contact</button>
+               <button className="btn add-contact" onClick={addContact}> Add Contact</button>
            </div>
         </div>
     )
